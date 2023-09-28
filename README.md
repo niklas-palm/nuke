@@ -1,6 +1,8 @@
 # AWS Nuke Config
 
-Config for aws-nuke that retains SSO and Control Tower related resources.
+Config for aws-nuke that retains SSO, Control Tower and Isengard related resources.
+
+> **DISCLAIMER:** As Control Tower evolves, resources not covered by this may not be covered. Do dry-runs with the tool and verify it's not deleting resources it shouldn't!
 
 ## Prerequisites
 
