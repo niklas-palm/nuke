@@ -1,0 +1,287 @@
+regions:
+  - "global"
+  - "eu-west-1"
+  - "eu-north-1"
+  # - "us-east-2"
+  # - "us-east-1"
+  # - "us-west-1"
+  # - "us-west-2"
+  # - "af-south-1"
+  # - "ap-east-1"
+  # - "ap-south-1"
+  # - "ap-northeast-3"
+  # - "ap-northeast-2"
+  # - "ap-southeast-1"
+  # - "ap-southeast-2"
+  # - "ap-northeast-1"
+  # - "ca-central-1"
+  # - "cn-north-1"
+  # - "cn-northwest-1"
+  # - "eu-central-1"
+  # - "eu-west-2"
+  # - "eu-south-1"
+  # - "eu-west-3"
+  # - "me-south-1"
+  # - "sa-east-1"
+
+# Never target these accounts
+account-blocklist:
+  - 0000000000
+
+# Target accounts
+accounts:
+  "000000000": # account-alias
+    presets:
+      - sso
+      - controltower
+      - isengard
+
+resource-types:
+  excludes:
+    - S3Object # Let the S3Bucket delete all Objects instead of individual objects (optimization)
+
+# Preset filters
+presets:
+  sso:
+    filters:
+      IAMSAMLProvider:
+        - type: "glob"
+          value: "AWSSSO_.*_DO_NOT_DELETE"
+        - type: "contains"
+          value: "AWSSSO"
+        - type: "contains"
+          value: "DO-NOT-DELETE"
+      IAMRole:
+        - type: "glob"
+          value: "AWSReservedSSO_*"
+        - type: "contains"
+          value: "DO-NOT-DELETE"
+      IAMRolePolicyAttachment:
+        - type: "glob"
+          value: "AWSReservedSSO_*"
+        - type: "contains"
+          value: "DO-NOT-DELETE"
+  controltower:
+    filters:
+      CloudTrailTrail:
+        - type: "contains"
+          value: "aws-controltower"
+      CloudWatchEventsRule:
+        - type: "contains"
+          value: "aws-controltower"
+      EC2VPCEndpoint:
+        - type: "contains"
+          value: "aws-controltower"
+      EC2VPC:
+        - type: "contains"
+          value: "aws-controltower"
+      OpsWorksUserProfile:
+        - type: "contains"
+          value: "AWSControlTowerExecution"
+      CloudWatchLogsLogGroup:
+        - type: "contains"
+          value: "aws-controltower"
+        - type: "contains"
+          value: "AWSControlTowerBP"
+      CloudWatchEventsTarget:
+        - type: "contains"
+          value: "aws-controltower"
+      SNSSubscription:
+        - type: "contains"
+          value: "aws-controltower"
+      SNSTopic:
+        - type: "contains"
+          value: "aws-controltower"
+      EC2Subnet:
+        - type: "contains"
+          value: "aws-controltower"
+      ConfigServiceDeliveryChannel:
+        - type: "contains"
+          value: "aws-controltower"
+      ConfigServiceConfigurationRecorder:
+        - type: "contains"
+          value: "aws-controltower"
+      CloudFormationStack:
+        - type: "contains"
+          value: "AWSControlTower"
+      EC2RouteTable:
+        - type: "contains"
+          value: "aws-controltower"
+      LambdaFunction:
+        - type: "contains"
+          value: "aws-controltower"
+      EC2DHCPOption:
+        - type: "contains"
+          value: "aws-controltower"
+      IAMRole:
+        - type: "contains"
+          value: "aws-controltower"
+        - type: "contains"
+          value: "AWSControlTower"
+        - type: "contains"
+          value: "AWSControlTower"
+        - type: "contains"
+          value: "DO-NOT-DELETE"
+      IAMRolePolicyAttachment:
+        - type: "contains"
+          value: "aws-controltower"
+        - type: "contains"
+          value: "DO-NOT-DELETE"
+        - type: "contains"
+          value: "AWSControlTower"
+      IAMRolePolicy:
+        - type: "contains"
+          value: "aws-controltower"
+        - type: "contains"
+          value: "DO-NOT-DELETE"
+        - type: "contains"
+          value: "AWSControlTower"
+  isengard:
+    filters:
+      IAMRole:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      IAMRolePolicy:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      IAMRolePolicyAttachment:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      CloudWatchEventsTarget:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      CloudWatchEventsRule:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      CloudTrailTrail:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      S3Bucket:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      S3Object:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      EC2VPCEndpoint:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      EC2VPC:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      OpsWorksUserProfile:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      CloudWatchLogsLogGroup:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      SNSSubscription:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      SNSTopic:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      EC2Subnet:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      ConfigServiceDeliveryChannel:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      ConfigServiceConfigurationRecorder:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      CloudFormationStack:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      EC2RouteTable:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      LambdaFunction:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
+      EC2DHCPOption:
+        - type: "contains"
+          value: "Isengard"
+        - type: "contains"
+          value: "isengard"
+        - type: "contains"
+          value: "GatedGarden"
